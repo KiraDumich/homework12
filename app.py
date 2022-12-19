@@ -88,7 +88,7 @@ def users():
       for u in User.query.all():
           result.append(u.to_dict())
 
-      return json.dump(result), 200, {'Content-Type': 'application/json; charset=utf-8'}
+      return json.dumps(result), 200, {'Content-Type': 'application/json; charset=utf-8'}
 
     if request.method == "POST":
         user_data = json.loads(request.data)
@@ -112,7 +112,7 @@ def users():
 @app.route("/users/<int:uid>", methods=["GET", "PUT", "DELETE"])
 def user(uid: int):
     if request.method == "GET":
-      return json.dump(User.query.get(uid).to_dict()), 200, {'Content-Type': 'application/json; charset=utf-8'}
+      return json.dumps(User.query.get(uid).to_dict()), 200, {'Content-Type': 'application/json; charset=utf-8'}
     if request.method == "PUT":
         user_data = json.loads(request.data)
         u = User.query.get(uid)
@@ -145,7 +145,7 @@ def orders():
       for u in Order.query.all():
           result.append(u.to_dict())
 
-      return json.dump(result), 200, {'Content-Type': 'application/json; charset=utf-8'}
+      return json.dumps(result), 200, {'Content-Type': 'application/json; charset=utf-8'}
 
     if request.method == "POST":
         order_data = json.loads(request.data)
@@ -171,7 +171,7 @@ def orders():
 @app.route("/orders/<int:uid>", methods=["GET", "PUT", "DELETE"])
 def order(uid: int):
      if request.method == "GET":
-        return json.dump(Order.query.get(uid).to_dict()), 200, {'Content-Type': 'application/json; charset=utf-8'}
+        return json.dumps(Order.query.get(uid).to_dict()), 200, {'Content-Type': 'application/json; charset=utf-8'}
 
      if request.method == "PUT":
          order_data = json.loads(request.data)
@@ -201,7 +201,6 @@ def order(uid: int):
         return "", 204
 
 
-
 @app.route("/offers", methods=["GET", "POST"])
 def offers():
     if request.method == "GET":
@@ -209,7 +208,7 @@ def offers():
       for u in Offer.query.all():
           result.append(u.to_dict())
 
-      return json.dump(result), 200, {'Content-Type': 'application/json; charset=utf-8'}
+      return json.dumps(result), 200, {'Content-Type': 'application/json; charset=utf-8'}
 
     if request.method == "POST":
         offer_data = json.loads(request.data)
@@ -224,11 +223,10 @@ def offers():
         db.session.commit()
 
 
-
 @app.route("/offers/<int:uid>", methods=["GET", "PUT", "DELETE"])
 def offer(uid: int):
     if request.method == "GET":
-      return json.dump(Offer.query.get(uid).to_dict()), 200, {'Content-Type': 'application/json; charset=utf-8'}
+      return json.dumps(Offer.query.get(uid).to_dict()), 200, {'Content-Type': 'application/json; charset=utf-8'}
 
     if request.method == "PUT":
         offer_data = json.loads(request.data)
